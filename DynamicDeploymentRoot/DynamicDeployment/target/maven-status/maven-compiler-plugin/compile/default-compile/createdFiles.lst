@@ -1,7 +1,0 @@
-com\noomtech\dynamicdeployment\servicefactory\ServiceConfig.class
-com\noomtech\dynamicdeployment\Main.class
-com\noomtech\dynamicdeployment\servicefactory\ServiceFactory.class
-com\noomtech\dynamicdeployment\servicefactory\DemoServiceAContainer.class
-com\noomtech\dynamicdeployment\servicefactory\ServiceContainer.class
-com\noomtech\dynamicdeployment\servicefactory\DemoServiceBContainer.class
-com\noomtech\dynamicdeployment\servicefactory\DemoServiceCContainer.class
