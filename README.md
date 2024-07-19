@@ -32,16 +32,21 @@ to construct a new instance of its service object based on the jar file provided
 
 The diagram below illustrates this:
 
-![Example Overview Diagram](/DynamicDeployment1.png)
+
+![Example Overview Diagram](DynamicDeployment1.PNG)
+
 
 The code itself is an implementation of the diagram, where the "Deployment Service" in this case is something that allows the user to rebuild the jar files for each service and to see the resulting output, 
 while never having to restart the application.
 
-The repository includes 3 projects:
+The repository includes 3 projects-
 
-1: The main application that brings the 3 services (services A, B and C) together in a service factory and which takes the aforementioned user input
-2: The service interfaces
-3: Simple service implementations
+**1** The main application that brings services A, B and C together in a service factory and which takes the aforementioned user input.
+
+**2** The service interfaces.
+
+**3** Simple service implementations.
+
 
 Open the projects and build the jar files, and then provide the URLs of the JAR files from project 3 to the main application in project 1 as parameters.  When the application prompts you, make some changes to the service implementations and rebuild the jars, then press enter again.  
 You'll see your changes illustrated in the output and will be able to rebuild and redeploy over and again without restarting the application.
