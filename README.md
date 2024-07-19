@@ -69,6 +69,8 @@ You could put different monoliths on different servers and configure them with d
 - There's nothing stopping anyone from passing a mutable object over the interfaces e.g. a collection of some sort, that introduced a link between services.  This could casue havoc, especially after deployment.  Code reviews would need 
 to be in place to ensure this didn't happen e.g. that only Strings or primitives were used.
 
+- A mechanism would need to be put in place that changes the state of the container somehow while the service instance is being replaced in order to prevent requests to the service during this time e.g. a Mutex could be added, requests could be queued, or an exception could be thrown.
+
 ### Pros
 
 - No down-time during deployments
