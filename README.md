@@ -63,9 +63,6 @@ access modifiers (package-private, public and so on).
 
 ### Cons
 
-
-**- Doesn't work yet!!!  ;-)  I still need to figure out a way of pulling in the dependencies of the modules themselves when they're loaded.  However, if it was working then:**
-
 - Harder to scale.  You could certainly have >1 service in a container and load-balance between them, but because they're all part of the same process they'd all have to run on the same server.  
 You could put different monoliths on different servers and configure them with different services, but it's a bit more complex.
 
@@ -95,5 +92,13 @@ to be in place to ensure this didn't happen e.g. that only Strings or primitives
 
 - No network latency between components.
 
+
+## Conclusion
+
+It seems to work pretty well.  Pros and cons in my opinion are above.
+It would be simple to take it further and add a "addOnMessageListener" method to the interface of a service that produced a message stream so that clients of that service could use it to receive the streams.  
+Clients of producer services like this could also use "preDeployment" and "postDeployment" listeners to enable them to be notified just before and immediately after a message-producing service was deployed, so as they could remove their message listeners and then add them again.
+In the opposite situation, where the client of the service was delivering messages to it instead of consuming messages from it, the clients could use these hooks to establish a temporary queue of messages that weren't delivered during the deployment process and that could be delivered when notification of the deployment being completed was received.
+These deployment life-cycle hooks could be managed in the central hub (the "ServiceFactory" in the context of the example above) by getting it to poll the last updated timestamp of the jar files.
 
 
