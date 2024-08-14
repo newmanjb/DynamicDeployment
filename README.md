@@ -97,7 +97,8 @@ to be in place to ensure this didn't happen e.g. that only Strings or primitives
 
 It seems to work pretty well.  Pros and cons in my opinion are above.
 
-It would be simple to take it further and add a "addOnMessageListener" method to the interface of a service that produced a message stream so that clients of that service could use it to receive the streams.  
+It would be simple to take it further and add a "addOnMessageListener" method to the interface of a service that produced a message stream, so that clients of that service could use it to receive the stream.  
+
 Clients of producer services like this could also use "preDeployment" and "postDeployment" listeners to enable them to be notified just before and immediately after a message-producing service was deployed, so as they could remove their message listeners and then add them again.
 
 In the opposite situation, where the client of the service was delivering messages to it instead of consuming messages from it, the clients could use these hooks to establish a temporary queue of messages that weren't delivered during the deployment process and that could be delivered when notification of the deployment being completed was received.
