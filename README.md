@@ -1,4 +1,4 @@
-# Dynamic Deployment
+# Microservices vs Monoliths in Java - Can we get the Best of Both Worlds _and_ Keep it Simple?
 
 
 ## Overview
@@ -12,9 +12,11 @@ dependency management, devops and production support with very little gain.
 
 Regardless of transaction volume though, nobody wants a monolith that contains a rat's nest of dependencies and tight coupling either, where the resulting release frequency is on a par with solar eclipses.
 
-I wrote this small java application to show that it's perfectly possible to code a monolithic application where each module is still decoupled to the point where they can be released independently with no downtime of the monolith.
+So I wrote this small java application to investigate the possibility of developing a monolithic application, but where each module is still decoupled to the point where they can be released independently with no downtime of the monolith, and where 
+the modules can still be worked on independently by a separate team if neccessary, but where they won't have to worry about maintaining and monitoring a separate messaging layer like a REST API to other components as you would have to in a micro-service architecture.
 
-Also, the modules can still be worked on independently, by a separate team if neccessary, and they won't have to worry about maintaining and monitoring a separate messaging layer like a REST API to every other component as you would in a micro-service architecture.
+I wanted to see if I could do this without complicating things by using something like OSGI or another framework, so as development teams could just pick up the monolith seamlessly.
+
 
 
 ## Application
@@ -61,6 +63,9 @@ access modifiers (package-private, public and so on).
 
 ### Cons
 
+
+**- Doesn't work yet!!!  ;-)  I still need to figure out a way of pulling in the dependencies of the modules themselves when they're loaded.  However, if it was working then:**
+
 - Harder to scale.  You could certainly have >1 service in a container and load-balance between them, but because they're all part of the same process they'd all have to run on the same server.  
 You could put different monoliths on different servers and configure them with different services, but it's a bit more complex.
 
@@ -70,6 +75,7 @@ You could put different monoliths on different servers and configure them with d
 to be in place to ensure this didn't happen e.g. that only Strings or primitives were used.
 
 - A mechanism would need to be put in place that changes the state of the container somehow while the service instance is being replaced in order to prevent requests to the service during this time e.g. a Mutex could be added, requests could be queued, or an exception could be thrown.
+
 
 ### Pros
 
@@ -89,14 +95,5 @@ to be in place to ensure this didn't happen e.g. that only Strings or primitives
 
 - No network latency between components.
 
-
-## Conclusion
-
-For systems under heavy load and which need constant monitoring and scaling e.g. the Netflix and Amazon's of the world, or a high frequency trading system, you are going to want something extremely scalable that probably 
-runs in a dynamic containerised environment.  By necessity you will have dedicated resources associated with the monitoring and scaling of the application in addition to the development, testing and fault-fixing.
-
-These are the kind of case-studies you're more likely to hear about because they might be household names handling famously large volumes of traffic who've benefitted significantly from re-architecting their systems to the micro-service architecture, and it's easy to see why it's so beneficial in their case.
-
-But a lot of systems in organisations don't fall into these categories, despite being mission-critical.  Also, many don't have the extra resources required to look after that many services anyway, even though in an ideal world they should.
 
 
