@@ -38,8 +38,16 @@ The diagram below illustrates this:
 ![Example Overview Diagram](DynamicDeployment1.PNG)
 
 
+
+
 The code itself is an implementation of the diagram, where the "Deployment Service" in this case is something that allows the user to rebuild the jar files for each service and to see the resulting output, 
 while never having to restart the application.
+
+The code documentation contains detailed explanations but there's nothing sophisticated going on here that anyone couldn't have done over 10 years ago.  It's just using dynamic class-loading, reflection, and taking advantage of java's 
+access modifiers (package-private, public and so on).
+
+
+## How To Run
 
 The repository includes 3 projects-
 
@@ -49,14 +57,12 @@ The repository includes 3 projects-
 
 **3** Simple service implementations.
 
-
 Open the projects and build the jar files, and then provide the URLs of the JAR files from project 3 to the main application in project 1 as parameters.  When the application prompts you, make some changes to the service implementations and rebuild the jars, then press enter again.  
 You'll see your changes illustrated in the output and will be able to rebuild and redeploy over and again without restarting the application.
 
 See the java docs on the "Main" class for example input parameters.
 
-The code documentation contains detailed explanations but there's nothing sophisticated going on here that anyone couldn't have done over 10 years ago.  It's just using dynamic class-loading, reflection, and taking advantage of java's 
-access modifiers (package-private, public and so on).
+
 
 
 ## Pros and Cons
